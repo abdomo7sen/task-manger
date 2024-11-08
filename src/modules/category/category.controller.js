@@ -1,7 +1,6 @@
 import slugify from "slugify"
 import { messages } from "../../utils/common/messages.js"
 import { AppError } from "../../utils/appError.js"
-import { deleteOne,getOne } from "../handler/handler.js"
 import { ApiFeature } from "../../utils/apiFeature.js"
 import { Category } from "../../../databases/models/category.model.js"
 
@@ -39,7 +38,7 @@ const deleteCategory=async (req,res,next)=>{
     const category=await Category.findByIdAndDelete(req.params.id,{new:true})
     category || next(new AppError(messages.Category.NotFound,404))
 
-    !task||res.status(200).json({message:messages.Category.DeletedSuccessfully,task})
+    !category||res.status(200).json({message:messages.Category.DeletedSuccessfully,task})
 }
 
 
