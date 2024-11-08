@@ -12,4 +12,4 @@ authRouter.post("/sign-in",validate(signinSchemaVal),signinVal,catchError(signin
 
 authRouter.post("/verify",catchError(verifyOtp))
 
-export {authRouter}
+export default authRouter

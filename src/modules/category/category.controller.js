@@ -7,7 +7,7 @@ import { Category } from "../../../databases/models/category.model.js"
 
 const addCategory= async (req,res,next)=>{
     req.body.slug=slugify(req.body.name)
-    let {user}=req
+    let user=req.user
     req.body.createdBy=user.userId
     const category=new Category(req.body)
     await category.save()

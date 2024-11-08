@@ -10,12 +10,12 @@ const categoryRouter=Router()
 
 categoryRouter.use('/:id/tasks',taskRouter)
 
-categoryRouter.route("/",verifyToken)
-.post(validate(addCategoryVal),catchError(addCategory))
-.get(validate(getAllCategoriesVal),catchError(getAllCategories))
+categoryRouter.route("/")
+.post(verifyToken,validate(addCategoryVal),catchError(addCategory))
+.get(verifyToken,validate(getAllCategoriesVal),catchError(getAllCategories))
 
-categoryRouter.route('/:id',verifyToken)
-.get(catchError(getCategory))
-.put(validate(updateCategoryVal),catchError(updateCategory))
-.delete(catchError(deleteCategory))
+categoryRouter.route('/:id')
+.get(verifyToken,catchError(getCategory))
+.put(verifyToken,validate(updateCategoryVal),catchError(updateCategory))
+.delete(verifyToken,catchError(deleteCategory))
 export default categoryRouter
